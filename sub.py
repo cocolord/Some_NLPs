@@ -101,7 +101,44 @@ for i in range(1,173):
         buff = re.sub(r'<!--底部广告位end-->','',buff)
         buff = re.sub(r'<b>.*?</b>','',buff)
         buff = re.sub(r'图片来源：','',buff)
-    buff = re.sub(r'[①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑱⑲⑳⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒂⒁⒃⒄⒅⒆⒇]','',buff)
+        #去除所有单引号
+        buff = re.sub(r'\'','',buff)
+        buff = re.sub(r'\"','',buff)
+        buff = re.sub(r'-','-',buff)
+        #多字符
+        buff = re.sub(r'-{2,10}','-',buff)
+        buff = re.sub(r'\.{2,10}','.',buff)
+        buff = re.sub(r'。{2,10}','。',buff)
+        buff = re.sub(r'？{2,10}','？',buff)
+        buff = re.sub(r'！{2,10}','！',buff)
+        #去除所有的~
+        #去除所有的括号
+        buff = re.sub(r'\(.*?\)','',buff)
+        buff = re.sub(r'（.*?）','',buff)
+        #替换数字
+        buff = re.sub(r'1','一',buff)
+        buff = re.sub(r'2','二',buff)
+        buff = re.sub(r'3','三',buff)
+        buff = re.sub(r'4','四',buff)
+        buff = re.sub(r'5','五',buff)
+        buff = re.sub(r'6','六',buff)
+        buff = re.sub(r'7','七',buff)
+        buff = re.sub(r'8','八',buff)
+        buff = re.sub(r'9','九',buff)
+        buff = re.sub(r'0','零',buff)
+        buff = re.sub(r'一一月','十一月',buff)
+        buff = re.sub(r'一二月','十二月',buff)
+        buff = re.sub(r'二二世纪','二十二世纪',buff)
+        buff = re.sub(r'二一世纪','二十一世纪',buff)
+        buff = re.sub(r'二零世纪','二十世纪',buff)
+        #全角半角
+        buff = re.sub(r'\,','，',buff)
+        buff = re.sub(r':','：',buff)
+        buff = re.sub(r'\?','？',buff)
+        buff = re.sub(r'\!','！',buff)
+        #去除英文字符
+        buff = re.sub(r'[A-Za-z]*','',buff)
+        buff = re.sub(r'<span style=[\s\S]*?>','',buff)
     with open('chongdulishi.txt','a',encoding='utf-8') as destfile:
 
         destfile.writelines(buff)
